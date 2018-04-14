@@ -38,3 +38,7 @@ Note: The codes for `ps-experiment` is `~/.roswell/local-projects/sample-pse/js.
 ## Copyright
 
 Copyright (c) 2018 eshamster (hamgoostar@gmail.com)
+
+## License
+
+Licensed under the MIT License.
