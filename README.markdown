@@ -5,7 +5,6 @@ This include [Roswell](https://github.com/snmsts/roswell) templates of [ps-exper
 ----
 
 ## Usage
-### Some extended notations
 
 On shell.
 
