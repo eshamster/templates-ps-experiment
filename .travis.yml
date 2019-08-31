@@ -17,14 +17,15 @@ script:
   - cd simple
   - ros template import
   - cd ${ROSWELL_INSTALL_DIR}/local-projects
+  - pwd
   - ros init simple-ps-experiment sample-pse
+  - ros -e "(ql:register-local-projects)"
   - cd sample-pse
+  - find
   - ros install qlot
-  - qlot install
-  - >
-    ros -e "(progn (ql:register-local-projects)
-                   (ql:quickload :sample-pse)
-                   (sample-pse:start))" -q
+  - qlot install || echo "ignore qlot install error because it is no problem when required packages are downloaded even if some errors occur"
+  - ls quicklisp/
+  - ros -e "(handler-case (progn (ql:quickload :sample-pse) (sample-pse:start)) (condition (c) (print c) (uiop:quit -1)))"
 
 
 notifications:
