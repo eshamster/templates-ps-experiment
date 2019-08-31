@@ -1,0 +1,33 @@
+language: lisp
+sudo: false
+
+env:
+  global:
+    - PATH=~/.roswell/bin:$PATH
+    - ROSWELL_INSTALL_DIR=$HOME/.roswell
+  matrix:
+    - LISP=sbcl-bin
+    - LISP=ccl-bin
+
+install:
+  - curl -L https://raw.githubusercontent.com/snmsts/roswell/release/scripts/install-for-ci.sh | sh
+  - ros install qlot
+
+script:
+  - cd simple
+  - ros template import
+  - cd ${ROSWELL_INSTALL_DIR}/local-projects
+  - ros init simple-ps-experiment sample-pse
+  - cd sample-pse
+  - ros install qlot
+  - qlot install
+  - >
+    ros -e "(progn (ql:register-local-projects)
+                   (ql:quickload :sample-pse)
+                   (sample-pse:start))" -q
+
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
