@@ -9,15 +9,9 @@
   Author: {{author}} ({{email}})
 |#
 
-(in-package :cl-user)
-(defpackage {{name}}-asd
-  (:use :cl :asdf))
-(in-package :{{name}}-asd)
-
 (defsystem {{name}}
   :version "0.1"
   :class :package-inferred-system
-  :defsystem-depends-on (:asdf-package-system)
   :author "{{author}}"
   :license "{{license}}"
   :depends-on (:parenscript
