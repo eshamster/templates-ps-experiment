@@ -53,7 +53,7 @@
     (clack:stop *server*)
     (setf *server* nil)))
 
-(defun start (&key (port 5000))
+(defun start (&key (port 5000) (address "0.0.0.0"))
   (stop)
   (setf *server*
         (clack:clackup
@@ -66,4 +66,5 @@
                                nil))
                    :root *script-dir*)
           *app*)
-         :port port)))
+         :port port
+         :address address)))
